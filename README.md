@@ -45,6 +45,7 @@ This is a note right here!
 ## Learn more
 
 * Study the `Makefile`
+* Create a PDF using [DeckTape](https://github.com/astefanutti/decktape)
 * [Pandoc manual](https://pandoc.org/MANUAL.html)
 * [Reveal.js README](https://github.com/hakimel/reveal.js/blob/master/README.md)
 

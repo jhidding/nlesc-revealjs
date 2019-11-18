@@ -273,11 +273,34 @@ body {
   .backgrounds {
     background-color: #fff; } }
 
+#title-slide {
+  background-image: url("img/Escience_artwork6.jpg"); }
+
 #title-slide h1.title {
   font-size: 60pt; }
+
+.subtitle {
+  font-style: italic; }
 
 .title-slide .slide-background-content {
   background: #00aeef; }
 
 .title-slide h1 {
   color: white; }
+
+.annotatedCode p {
+  text-align: left;
+  font-size: 20pt;
+  margin-bottom: 0; }
+
+.annotatedCode div {
+  margin: 0pt 5pt 0pt 5pt; }
+
+.container {
+  display: flex; }
+
+.col {
+  flex: 1; }
+
+#bibliography .references {
+  text-align: left; }
