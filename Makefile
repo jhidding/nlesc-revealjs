@@ -73,7 +73,7 @@ reveal.js/img: | reveal.js img
 reveal.js/css/theme/source/nlesc.scss: theme/nlesc.scss | reveal.js
 	cp theme/nlesc.scss reveal.js/css/theme/source
 
-reveal.js/css/theme/nlesc.css: reveal.js/css/theme/source/nlesc.scss
+reveal.js/dist/theme/nlesc.css: reveal.js/css/theme/source/nlesc.scss
 	cd reveal.js && npm run build -- css-themes
 
 reveal.js:
@@ -91,8 +91,8 @@ docs:
 docs/img: img | docs
 	cp -r img docs
 
-docs/nlesc.css: reveal.js/css/theme/nlesc.css | docs
-	cp reveal.js/css/theme/nlesc.css docs
+docs/nlesc.css: reveal.js/dist/theme/nlesc.css | docs
+	cp reveal.js/dist/theme/nlesc.css docs
 
 docs/index.html: $(source) Makefile | docs
 	pandoc -t revealjs -s -o ./docs/index.html \
