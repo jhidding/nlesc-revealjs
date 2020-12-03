@@ -38,7 +38,7 @@ help:
 	| fold -s -w 80
 
 #| * `watch`: reload browser upon changes
-watch: reveal.js/index.html reveal.js/css/theme/nlesc.css reveal.js/img
+watch: reveal.js/index.html reveal.js/dist/theme/nlesc.css reveal.js/img
 	@tmux new-session make --no-print-directory watch-pandoc \; \
 		split-window -v make --no-print-directory watch-reveal \; \
 		select-layout even-vertical \;
@@ -46,7 +46,7 @@ watch: reveal.js/index.html reveal.js/css/theme/nlesc.css reveal.js/img
 watch-pandoc:
 	@while true; do \
 		inotifywait -e close_write $(source) Makefile theme/*; \
-		make reveal.js/index.html reveal.js/css/theme/source/nlesc.scss reveal.js/img; \
+		make reveal.js/index.html reveal.js/dist/theme/source/nlesc.scss reveal.js/img; \
 	done
 
 watch-reveal:
@@ -57,7 +57,7 @@ clean:
 	rm -rf reveal.js docs
 
 #| * `pages`: create documentation for github.io pages
-pages: docs docs/img docs/index.html docs/nlesc.css
+pages: docs docs/img docs/index.html docs/nlesc.css docs/dist
 
 # Rules ============================================
 
@@ -91,13 +91,16 @@ docs:
 docs/img: img | docs
 	cp -r img docs
 
+docs/dist: reveal.js/dist | docs
+	cp -r $< $@
+
 docs/nlesc.css: reveal.js/dist/theme/nlesc.css | docs
 	cp reveal.js/dist/theme/nlesc.css docs
 
 docs/index.html: $(source) Makefile | docs
 	pandoc -t revealjs -s -o ./docs/index.html \
 		$(source) --mathjax \
-		-V revealjs-url=https://revealjs.com \
+		-V revealjs-url=./dist \
 		--css nlesc.css
 
 .PHONY: all clean watch pages watch-pandoc watch-reveal
